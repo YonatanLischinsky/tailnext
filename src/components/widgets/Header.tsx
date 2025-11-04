@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { IconRss } from '@tabler/icons-react';
 import { useOnClickOutside } from '~/hooks/useOnClickOutside';
 import ToggleDarkMode from '~/components/atoms/ToggleDarkMode';
+import ToggleLanguage from '~/components/atoms/ToggleLanguage';
 import Link from 'next/link';
 import Logo from '~/components/atoms/Logo';
 import ToggleMenu from '../atoms/ToggleMenu';
@@ -151,6 +152,7 @@ const Header = () => {
         >
           <div className="flex w-full items-center justify-between md:w-auto">
             {showToggleTheme && <ToggleDarkMode />}
+            <ToggleLanguage />
             {showRssFeed && (
               <Link
                 className="text-muted inline-flex items-center rounded-lg p-2.5 text-sm hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
