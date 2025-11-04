@@ -22,7 +22,7 @@ const LoginPage = () => {
         <h2 className="mb-6 text-center text-2xl font-bold text-gray-800 dark:text-white">{getTranslation(language, 'login.title')}</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label htmlFor="email" className={`mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300 ${language === 'he' ? 'text-right' : ''}`}>
               {getTranslation(language, 'login.emailLabel')}
             </label>
             <input
@@ -38,7 +38,7 @@ const LoginPage = () => {
           <div className="mb-6">
             <label
               htmlFor="password"
-              className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              className={`mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300 ${language === 'he' ? 'text-right' : ''}`}
             >
               {getTranslation(language, 'login.passwordLabel')}
             </label>
