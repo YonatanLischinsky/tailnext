@@ -4,6 +4,7 @@ import {
   IconBrandInstagram,
   IconBrandTwitter,
   IconChevronDown,
+  IconHome,
   IconRss,
 } from '@tabler/icons-react';
 import { AnnouncementProps, FooterProps, HeaderProps } from '../types';
@@ -24,6 +25,11 @@ export const announcementData: AnnouncementProps = {
 // Header data
 export const headerData: HeaderProps = {
   links: [
+    {
+      label: 'header.home',
+      icon: IconHome,
+      href: '/',
+    },
     {
       label: 'header.pages',
       icon: IconChevronDown,

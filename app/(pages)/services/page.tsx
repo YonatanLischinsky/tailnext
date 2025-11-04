@@ -24,14 +24,14 @@ export const metadata: Metadata = {
 const Page = () => {
   return (
     <>
-      <Hero {...heroServices} />
+      {/* <Hero {...heroServices} /> */}
       <Features2 {...features2Services} />
-      <Content {...contentServicesOne} />
-      <Content {...contentServicesTwo} />
-      <Features4 {...features4Services} />
-      <Testimonials {...testimonialsServices} />
-      <FAQs {...faqsServices} />
-      <CallToAction {...callToActionServices} />
+      {/* { <Content {...contentServicesOne} /> */}
+      {/* <Content {...contentServicesTwo} /> */}
+      {<Features4 {...features4Services} /> }
+      {/* <Testimonials {...testimonialsServices} /> */}
+      {/* <FAQs {...faqsServices} /> */}
+      {/* <CallToAction {...callToActionServices} /> */}
     </>
   );
 };
