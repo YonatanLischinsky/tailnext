@@ -27,9 +27,52 @@
     "terms": "Terms & Conditions",
     "contact": "Contact Us",
     "login": "Login",
-    "loginButton": "Getting Started"
+    "loginButton": "Login"
   },
   "hero": {
     "registerNow": "Register Now"
+  },
+  "home": {
+    "hero": {
+      "title": "Connecting Contractors and Workforce, Seamlessly",
+      "subtitle": "Find skilled workers fast - connect with HR companies or contractors through one smart platform."
+    },
+    "steps": {
+      "title": "How it works",
+      "items": [
+        {
+          "title": "Step 1: Create Your Profile",
+          "description": "Sign up and create a your profile."
+        },
+        {
+          "title": "Step 2: Find Your Match",
+          "description": "Our smart platform connects you with the right opportunities."
+        },
+        {
+          "title": "Step 3: Get to Work",
+          "description": "Once connected, you can schedule, manage, and track your work all in one place. It's that simple."
+        },
+        {
+          "title": "Ready !"
+        }
+      ]
+    },
+    "faqs": {
+      "title": "Frequently Asked Questions",
+      "items": [
+        {
+          "title": "What is WorkClick?",
+          "description": "WorkClick is a platform that connects contractors and workers in the construction industry. We help contractors find skilled workers and help workers find jobs."
+        },
+        {
+          "title": "How do I get started?",
+          "description": "To get started, simply sign up and create your profile. If you are a contractor, you can post your job openings. If you are a worker, you can browse for available jobs."
+        },
+        {
+          "title": "Is WorkClick free to use?",
+          "description": "Yes! Free Free Free!"
+        }
+      ]
+    }
   }
 }

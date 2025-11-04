@@ -31,7 +31,8 @@ import {
 import { useContext } from 'react';
 import { LanguageContext } from '~/context/LanguageContext';
 import { getTranslation } from '~/utils/i18n';
-import { HeroProps } from '~/shared/types';
+import { HeroProps, StepsProps, FAQsProps } from '~/shared/types';
+import { IconArrowDown } from '@tabler/icons-react';
 
 // export const metadata: Metadata = {
 //   title: SITE.title,
@@ -39,12 +40,68 @@ import { HeroProps } from '~/shared/types';
 
 export default function Page() {
   const { language } = useContext(LanguageContext);
+  const t = (key: string) => getTranslation(language, key);
+
   const heroHomeWithTranslation: HeroProps = {
     ...heroHome,
+    title: t('home.hero.title'),
+    subtitle: t('home.hero.subtitle'),
     callToAction: {
       ...heroHome.callToAction,
-      text: getTranslation(language, 'hero.registerNow'),
+      text: t('hero.registerNow'),
     },
+  };
+
+  const stepsHomeWithTranslation: StepsProps = {
+    ...stepsHome,
+    isReversed: language === 'he' ? true : false,
+    header: {
+      title: t('home.steps.title'),
+    },
+    items: [
+      {
+        ...stepsHome.items[0],
+        title: t('home.steps.items.0.title'),
+        description: t('home.steps.items.0.description'),
+      },
+      {
+        ...stepsHome.items[1],
+        title: t('home.steps.items.1.title'),
+        description: t('home.steps.items.1.description'),
+      },
+      {
+        ...stepsHome.items[2],
+        title: t('home.steps.items.2.title'),
+        description: t('home.steps.items.2.description'),
+      },
+      {
+        ...stepsHome.items[3],
+        title: t('home.steps.items.3.title'),
+      },
+    ],
+  };
+
+  const faqs2HomeWithTranslation: FAQsProps = {
+    ...faqs2Home,
+    header: {
+      ...faqs2Home.header,
+      title: t('home.faqs.title'),
+      subtitle: "",
+    },
+    items: [
+      {
+        title: t('home.faqs.items.0.title'),
+        description: t('home.faqs.items.0.description'),
+      },
+      {
+        title: t('home.faqs.items.1.title'),
+        description: t('home.faqs.items.1.description'),
+      },
+      {
+        title: t('home.faqs.items.2.title'),
+        description: t('home.faqs.items.2.description'),
+      },
+    ],
   };
 
   return (
@@ -54,10 +111,10 @@ export default function Page() {
       {/* <Features {...featuresHome} /> */}
       {/* <Content {...contentHomeOne} /> */}
       {/* <Content {...contentHomeTwo} /> */}
-      <Steps {...stepsHome} />
+      <Steps {...stepsHomeWithTranslation} />
       {/* <Testimonials {...testimonialsHome} /> */}
-      <Pricing {...pricingHome} />
-      <FAQs2 {...faqs2Home} />
+      {/* <Pricing {...pricingHome} /> */}
+      <FAQs2 {...faqs2HomeWithTranslation} />
       {/* <Team {...teamHome} /> */}
       {/* <Contact {...contactHome} /> */}
       {/* <CallToAction2 {...callToAction2Home} /> */}
