@@ -18,6 +18,14 @@
     "signUp": "הירשם"
   },
   "header": {
+    "pages": "עמודים",
+    "services": "שירותים",
+    "pricing": "מחירים",
+    "faqs": "שאלות נפוצות",
+    "about": "מי אנחנו",
+    "terms": "תנאים והגבלות",
+    "contact": "צור קשר",
+    "login": "התחבר",
     "loginButton": "בואו נתחיל"
   },
   "hero": {

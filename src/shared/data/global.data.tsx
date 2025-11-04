@@ -25,39 +25,39 @@ export const announcementData: AnnouncementProps = {
 export const headerData: HeaderProps = {
   links: [
     {
-      label: 'Pages',
+      label: 'header.pages',
       icon: IconChevronDown,
       links: [
         {
-          label: 'Services',
+          label: 'header.services',
           href: '/services',
         },
         {
-          label: 'Pricing',
+          label: 'header.pricing',
           href: '/pricing',
         },
         {
-          label: 'FAQs',
+          label: 'header.faqs',
           href: '/faqs',
         },
         {
-          label: 'About us',
+          label: 'header.about',
           href: '/about',
         },
         {
-          label: 'Terms & Conditions',
+          label: 'header.terms',
           href: '/terms',
         },
       ],
     },
     {
-      label: 'Contact Us',
+      label: 'header.contact',
       href: '/contact',
     },
   ],
   actions: [
     {
-      text: 'Login',
+      text: 'header.login',
       href: '/login',
     },
   ],

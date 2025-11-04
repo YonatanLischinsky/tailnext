@@ -18,6 +18,14 @@
     "signUp": "Sign Up"
   },
   "header": {
+    "pages": "Pages",
+    "services": "Services",
+    "pricing": "Pricing",
+    "faqs": "FAQs",
+    "about": "About us",
+    "terms": "Terms & Conditions",
+    "contact": "Contact Us",
+    "login": "Login",
     "loginButton": "Getting Started"
   },
   "hero": {
