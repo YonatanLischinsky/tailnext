@@ -15,7 +15,31 @@
     "passwordPlaceholder": "הכנס סיסמה",
     "loginButton": "התחבר",
     "noAccount": "אין לך חשבון?",
-    "signUp": "הירשם"
+    "signUp": "הירשם",
+    "rememberMe": "?זכור אותי"
+  },
+  "signup": {
+    "title": "רישום",
+    "fullNameLabel": "שם מלא",
+    "fullNamePlaceholder": "הכנס את שמך המלא",
+    "emailLabel": "אימייל",
+    "emailPlaceholder": "הכנס אימייל",
+    "passwordLabel": "סיסמה",
+    "passwordPlaceholder": "הכנס סיסמה",
+    "confirmPasswordLabel": "אימות סיסמה",
+    "confirmPasswordPlaceholder": "אימות סיסמה",
+    "accountTypeLabel": "סוג חשבון",
+    "accountTypePlaceholder": "בחר סוג חשבון",
+    "accountTypeContractor": "קבלן",
+    "accountTypeHrCompany": "חברת כוח אדם",
+    "signupButton": "הירשם",
+    "alreadyAccount": "יש לך כבר חשבון?",
+    "login": "התחבר",
+    "errorPasswordMismatch": "הסיסמאות אינן תואמות",
+    "errorAccountType": "אנא בחר סוג חשבון",
+    "errorAllFields": "אנא מלא את כל השדות",
+    "errorInvalidEmail": "אנא הכנס כתובת אימייל תקינה",
+    "errorPasswordLength": "הסיסמה חייבת להכיל לפחות 6 תווים"
   },
   "header": {
     "home": "עמוד ראשי",
@@ -27,7 +51,8 @@
     "terms": "תנאים והגבלות",
     "contact": "צור קשר",
     "login": "התחבר",
-    "loginButton": "כניסה למערכת"
+    "loginButton": "כניסה למערכת",
+    "signUp": "רישום"
   },
   "hero": {
     "registerNow": "הירשם עכשיו"

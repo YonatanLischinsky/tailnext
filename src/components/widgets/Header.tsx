@@ -21,6 +21,8 @@ const Header = () => {
   const translatedActions = actions.map(action => {
     if (action.href === '/login') {
       return { ...action, text: getTranslation(language, 'header.loginButton') };
+    } else if (action.href === '/signup') {
+      return { ...action, text: getTranslation(language, 'header.signUp') };
     }
     return action;
   });

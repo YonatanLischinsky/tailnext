@@ -66,6 +66,11 @@ export const headerData: HeaderProps = {
       text: 'header.login',
       href: '/login',
     },
+    {
+      text: 'header.signUp',
+      href: '/signup',
+      isButton: true,
+    },
   ],
   isSticky: true,
   showToggleTheme: true,
