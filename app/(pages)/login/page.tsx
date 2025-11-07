@@ -10,6 +10,8 @@ import { loginAction } from '../../(auth)/actions';
 
 function SubmitButton({ enabled }: { enabled: boolean }) {
   const { pending } = useFormStatus();
+  const { language } = useContext(LanguageContext);
+
   return (
     <button
       type="submit"
@@ -20,7 +22,7 @@ function SubmitButton({ enabled }: { enabled: boolean }) {
       }`}
       disabled={!enabled || pending}
     >
-      {pending ? 'Signing in…' : 'Login'}
+      {pending ? getTranslation(language, 'login.signingIn') : getTranslation(language, 'login.loginButton')}
     </button>
   );
 }

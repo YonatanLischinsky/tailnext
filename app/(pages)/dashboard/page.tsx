@@ -1,9 +1,11 @@
 'use client';
 
-import { signOutAction } from '../../(auth)/actions';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '~/utils/supabase';
+import { LanguageContext } from '~/context/LanguageContext';
+import { getTranslation } from '~/utils/i18n';
+import { signOutAction } from '../../(auth)/actions';
 
 interface Profile {
   id: string;
@@ -17,20 +19,13 @@ export default function DashboardPage() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
+  const { language } = useContext(LanguageContext);
 
   useEffect(() => {
-    let mounted = true;
-
-    const init = async () => {
-      const {
-        data: { session },
-        error: sessionErr,
-      } = await supabase.auth.getSession();
-
-      if (sessionErr) console.error('Error getting session:', sessionErr);
+    const fetchProfile = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
 
       if (!session) {
-        setLoading(false);
         router.push('/login');
         return;
       }
@@ -41,50 +36,58 @@ export default function DashboardPage() {
         .eq('id', session.user.id)
         .single();
 
-      if (!mounted) return;
-
       if (error) {
         console.error('Error loading profile:', error);
-        setLoading(false);
-        return;
+      } else {
+        setProfile(prof as Profile);
       }
-
-      setProfile(prof as Profile);
       setLoading(false);
     };
 
-    init();
+    fetchProfile();
 
-    const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (!mounted) return;
-      if (!session) router.push('/login');
+    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_OUT') {
+        router.push('/login');
+      }
+      if (event === 'SIGNED_IN') {
+        setLoading(true);
+        fetchProfile();
+      }
     });
 
     return () => {
-      mounted = false;
-      sub.subscription.unsubscribe();
+      authListener?.subscription.unsubscribe();
     };
   }, [router]);
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gray-100 dark:bg-slate-900">
-        <div className="text-xl">Loading...</div>
+      <div
+        className="flex min-h-screen items-center justify-center bg-gray-100 dark:bg-slate-900"
+        dir={language === 'he' ? 'rtl' : 'ltr'}
+      >
+        <div className="text-xl">{getTranslation(language, 'dashboard.loading')}</div>
       </div>
     );
   }
 
   if (!profile) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gray-100 dark:bg-slate-900">
+      <div
+        className="flex min-h-screen items-center justify-center bg-gray-100 dark:bg-slate-900"
+        dir={language === 'he' ? 'rtl' : 'ltr'}
+      >
         <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md dark:bg-slate-800">
-          <h2 className="mb-6 text-center text-2xl font-bold text-gray-800 dark:text-white">Dashboard</h2>
-<form action={signOutAction}>
+          <h2 className="mb-6 text-center text-2xl font-bold text-gray-800 dark:text-white">{getTranslation(language, 'dashboard.title')}</h2>
+          <p className="mb-4 text-center text-gray-600 dark:text-gray-300">{getTranslation(language, 'dashboard.profileError')}</p>
+
+          <form action={signOutAction}>
             <button
               type="submit"
               className="w-full rounded-md bg-red-600 px-4 py-2 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
             >
-              Sign Out
+              {getTranslation(language, 'dashboard.signOutButton')}
             </button>
           </form>
         </div>
@@ -93,37 +96,39 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100 dark:bg-slate-900">
+    <div
+      className="flex min-h-screen items-center justify-center bg-gray-100 dark:bg-slate-900"
+      dir={language === 'he' ? 'rtl' : 'ltr'}
+    >
       <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md dark:bg-slate-800">
-        <h2 className="mb-6 text-center text-2xl font-bold text-gray-800 dark:text-white">Dashboard</h2>
+        <h2 className="mb-6 text-center text-2xl font-bold text-gray-800 dark:text-white">{getTranslation(language, 'dashboard.title')}</h2>
 
         <div className="space-y-4">
           <div className="rounded-lg bg-gray-50 p-4 dark:bg-slate-700">
-            <h3 className="mb-2 text-lg font-semibold text-gray-700 dark:text-white">User Profile</h3>
+            <h3 className="mb-2 text-lg font-semibold text-gray-700 dark:text-white">{getTranslation(language, 'dashboard.profileTitle')}</h3>
             <div className="space-y-2 text-gray-600 dark:text-gray-300">
               <p>
-                <span className="font-medium">Full Name:</span> {profile.full_name}
+                <span className="font-medium">{getTranslation(language, 'dashboard.fullNameLabel')}:</span> {profile.full_name}
               </p>
               <p>
-                <span className="font-medium">Email:</span> {profile.email}
+                <span className="font-medium">{getTranslation(language, 'dashboard.emailLabel')}:</span> {profile.email}
               </p>
               <p>
-                <span className="font-medium">Account Type:</span> {profile.account_type ?? '—'}
+                <span className="font-medium">{getTranslation(language, 'dashboard.accountTypeLabel')}:</span> {profile.account_type ?? '—'}
               </p>
               <p>
-                <span className="font-medium">Member Since:</span>{' '}
+                <span className="font-medium">{getTranslation(language, 'dashboard.memberSinceLabel')}:</span>{' '}
                 {new Date(profile.created_at).toLocaleDateString()}
               </p>
             </div>
           </div>
 
-          {/* Server-side sign out clears auth cookies */}
           <form action={signOutAction}>
             <button
               type="submit"
               className="w-full rounded-md bg-red-600 px-4 py-2 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
             >
-              Sign Out
+              {getTranslation(language, 'dashboard.signOutButton')}
             </button>
           </form>
         </div>

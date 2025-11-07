@@ -61,7 +61,7 @@ const SignupPage = () => {
   };
 
   const redirectByRole = (accountType?: string | null) => {
-    return router.push('/dashboard');
+    return router.push('/login');
   };
 
   const handleSubmit = async (e: React.FormEvent) => {

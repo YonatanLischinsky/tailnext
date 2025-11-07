@@ -204,13 +204,22 @@ const Header = ({ session, profile }: HeaderProps) => {
               </Link>
             )}
             {session ? (
-              <div className={`${language === 'he' ? 'mr-4' : 'ml-4'} flex w-max flex-wrap items-center justify-end`}>
-                <span className="mr-4 text-gray-700 dark:text-gray-300">Welcome, {profile?.full_name}</span>
+              <div
+                className={`${language === 'he' ? 'mr-4' : 'ml-4'} flex w-max flex-wrap items-center justify-end ${
+                  language === 'he' ? 'flex-row-reverse' : ''
+                }`}>
+                <span className={`text-gray-700 dark:text-gray-300 ${language === 'he' ? 'ml-4' : 'mr-4'}`}>
+                  {language === 'he'
+                    ? `${profile?.full_name || ''} ${getTranslation(language, 'header.welcome')}`
+                    : `${getTranslation(language, 'header.welcome')} ${profile?.full_name || ''}`}
+                </span>
                 <Link
                   href="/dashboard"
                   className="btn btn-primary m-1 py-2 px-5 text-sm font-semibold shadow-none md:px-6"
                 >
-                  Dashboard
+                  {
+                    getTranslation(language, 'header.dashboardButton')
+                  }
                 </Link>
               </div>
             ) : (

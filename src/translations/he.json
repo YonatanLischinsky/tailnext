@@ -20,7 +20,8 @@
     "errorAllFields": "אנא מלא את כל השדות",
     "errorInvalidCredentials": "אימייל או סיסמה לא נכונים",
     "errorEmailNotConfirmed": "אנא אשר את כתובת האימייל שלך",
-    "errorGeneral": "אירעה שגיאה בעת ההתחברות"
+    "errorGeneral": "אירעה שגיאה בעת ההתחברות",
+    "signingIn": "...מתחבר"
   },
   "signup": {
     "title": "רישום",
@@ -60,7 +61,20 @@
     "contact": "צור קשר",
     "login": "התחבר",
     "loginButton": "כניסה למערכת",
-    "signUp": "רישום"
+    "signUp": "רישום",
+    "welcome": ",ברוך הבא",
+    "dashboardButton": "החשבון שלי"
+  },
+  "dashboard": {
+    "title": "החשבון שלי",
+    "profileTitle": "פרופיל משתמש",
+    "fullNameLabel": "שם מלא",
+    "emailLabel": "אימייל",
+    "accountTypeLabel": "סוג חשבון",
+    "memberSinceLabel": "חבר מאז",
+    "signOutButton": "התנתק",
+    "profileError": "לא ניתן לטעון את הפרופיל שלך.",
+    "loading": "...טוען"
   },
   "hero": {
     "registerNow": "הירשם עכשיו"

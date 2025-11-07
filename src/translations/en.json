@@ -20,7 +20,8 @@
     "errorAllFields": "Please fill in all fields",
     "errorInvalidCredentials": "Invalid email or password",
     "errorEmailNotConfirmed": "Please confirm your email address",
-    "errorGeneral": "An error occurred while logging in"
+    "errorGeneral": "An error occurred while logging in",
+    "signingIn": "Signing in…"
   },
   "signup": {
     "title": "Sign Up",
@@ -60,7 +61,20 @@
     "contact": "Contact Us",
     "login": "Login",
     "loginButton": "Login",
-    "signUp": "Sign Up"
+    "signUp": "Sign Up",
+    "welcome": "Welcome,",
+    "dashboardButton": "My Account"
+  },
+  "dashboard": {
+    "title": "My Account",
+    "profileTitle": "User Profile",
+    "fullNameLabel": "Full Name",
+    "emailLabel": "Email",
+    "accountTypeLabel": "Account Type",
+    "memberSinceLabel": "Member Since",
+    "signOutButton": "Sign Out",
+    "profileError": "Couldn’t load your profile.",
+    "loading": "Loading..."
   },
   "hero": {
     "registerNow": "Register Now"
