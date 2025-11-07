@@ -3,9 +3,12 @@
 import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';
 import useCollapse from '~/hooks/useCollapse';
 import { CollapseProps } from '~/shared/types';
+import { useContext } from 'react';
+import { LanguageContext } from '~/context/LanguageContext';
 
 const Collapse = ({ items, classCollapseItem, iconUp, iconDown }: CollapseProps) => {
   const { activeIndex, handleSetIndex } = useCollapse();
+  const { language } = useContext(LanguageContext);
 
   return (
     <>
@@ -24,8 +27,7 @@ const Collapse = ({ items, classCollapseItem, iconUp, iconDown }: CollapseProps)
               aria-controls={`accordion__panel-${index}`}
               role="button"
             >
-              <h2 className="w-full pr-2 text-lg font-medium leading-6 text-gray-900 dark:text-slate-300">{title}</h2>
-              {iconDown && iconUp ? (
+              {language === 'he' && (iconDown && iconUp ? (
                 activeIndex === index ? (
                   iconUp
                 ) : (
@@ -35,13 +37,26 @@ const Collapse = ({ items, classCollapseItem, iconUp, iconDown }: CollapseProps)
                 <IconChevronUp className="h-6 w-6 text-primary-600 dark:text-slate-200" />
               ) : (
                 <IconChevronDown className="h-6 w-6 text-primary-600 dark:text-slate-200" />
-              )}
+              ))}
+              <h2 className={`w-full ${language === 'he' ? 'text-right' : ''} text-lg font-medium leading-6 text-gray-900 dark:text-slate-300`}>{title}</h2>
+              {language !== 'he' && (iconDown && iconUp ? (
+                activeIndex === index ? (
+                  iconUp
+                ) : (
+                  iconDown
+                )
+              ) : activeIndex === index ? (
+                <IconChevronUp className="h-6 w-6 text-primary-600 dark:text-slate-200" />
+              ) : (
+                <IconChevronDown className="h-6 w-6 text-primary-600 dark:text-slate-200" />
+              ))}
             </div>
             {activeIndex === index && (
               <div
                 className="mt-3 select-none"
                 aria-labelledby={`accordion__heading-${index}`}
                 id={`accordion__panel-${index}`}
+                dir={language === 'he' ? 'rtl' : 'ltr'}
               >
                 <p className="mt-2 text-gray-600 dark:text-slate-400">{description}</p>
               </div>
