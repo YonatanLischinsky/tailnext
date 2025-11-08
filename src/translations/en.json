@@ -137,6 +137,7 @@
     "areaLabel": "Area",
     "experienceLabel": "Experience",
     "postedOnLabel": "Posted on",
-    "yearsLabel": "years"
+    "yearsLabel": "years",
+    "resetFilters": "Reset Filters"
   }
 }

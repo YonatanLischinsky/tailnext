@@ -137,6 +137,7 @@
     "areaLabel": "אזור",
     "experienceLabel": "ניסיון",
     "postedOnLabel": "פורסם בתאריך",
-    "yearsLabel": "שנים"
+    "yearsLabel": "שנים",
+    "resetFilters": "איפוס"
   }
 }

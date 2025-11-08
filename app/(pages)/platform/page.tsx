@@ -400,33 +400,40 @@ const PlatformPage = () => {
     }
   }, [location, experience, requiresApartment, posts, selectedPost]);
 
+  const handleResetFilters = () => {
+    setLocation('All');
+    setExperience('All');
+    setRequiresApartment('Default');
+  };
+
   const dir = language === 'he' ? 'rtl' : 'ltr';
 
   return (
     <div className="container mx-auto px-4 py-8" dir={dir}>
-      <div className="mb-8 p-4 rounded-lg bg-gray-100">
-        <div className="max-w-md">
-          <div className="grid grid-cols-[1fr,1fr,1.5fr] gap-4">
+      <div className="mb-8 p-4 rounded-lg bg-gray-200 dark:bg-slate-800 border-2 border-gray-300 dark:border-slate-700">
+        <div className="max-w-4xl">
+          <div className="grid grid-cols-[1fr,1fr,1.5fr,auto] gap-4 items-end">
             <div>
-              <label htmlFor="location" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="location" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 {t('platform.location')}
               </label>
             </div>
             <div>
-              <label htmlFor="experience" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="experience" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 {t('platform.workExperience')}
               </label>
             </div>
             <div>
-              <label htmlFor="requiresApartment" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="requiresApartment" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 {t('platform.requiresApartment')}
               </label>
             </div>
+            <div></div> {/* Empty label for the button */}
             <div>
               <select
                 id="location"
                 name="location"
-                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:bg-slate-700 dark:border-slate-600 dark:text-white"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
               >
@@ -440,7 +447,7 @@ const PlatformPage = () => {
               <select
                 id="experience"
                 name="experience"
-                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:bg-slate-700 dark:border-slate-600 dark:text-white"
                 value={experience}
                 onChange={(e) => setExperience(e.target.value)}
               >
@@ -454,7 +461,7 @@ const PlatformPage = () => {
               <select
                 id="requiresApartment"
                 name="requiresApartment"
-                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:bg-slate-700 dark:border-slate-600 dark:text-white"
                 value={requiresApartment}
                 onChange={(e) => setRequiresApartment(e.target.value)}
               >
@@ -463,35 +470,43 @@ const PlatformPage = () => {
                 <option value="No">{t('platform.noOption')}</option>
               </select>
             </div>
+            <div>
+              <button
+                onClick={handleResetFilters}
+                className="rounded-md px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              >
+                {t('platform.resetFilters')}
+              </button>
+            </div>
           </div>
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="md:col-span-1">
-          <div className="space-y-4 h-96 overflow-y-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+          <div className="space-y-4 h-96 overflow-y-auto rounded-lg border-2 border-gray-300 dark:border-slate-700">
+            <table className="min-w-full divide-y divide-gray-200 dark:divide-slate-700">
+              <thead className="bg-gray-200 dark:bg-slate-700">
                 <tr>
                   <th
                     scope="col"
-                    className={`px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
+                    className={`px-6 py-3 text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
                   >
                     {t('platform.availablePosts')}
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-white divide-y divide-gray-200 dark:bg-slate-800 dark:divide-slate-700">
                 {filteredPosts.map((post) => (
                   <tr
                     key={post.id}
                     onClick={() => setSelectedPost(post)}
-                    className={`cursor-pointer hover:bg-gray-50 ${
-                      selectedPost?.id === post.id ? 'bg-gray-200' : ''
+                    className={`cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700 ${
+                      selectedPost?.id === post.id ? 'bg-gray-200 dark:bg-slate-900' : ''
                     }`}
                   >
                     <td className={`px-6 py-4 whitespace-nowrap ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
-                      <div className="text-sm font-medium text-gray-900">{post.title}</div>
-                      <div className="text-sm text-gray-500">{post.company}</div>
+                      <div className="text-sm font-medium text-gray-900 dark:text-white">{post.title}</div>
+                      <div className="text-sm text-gray-500 dark:text-gray-400">{post.company}</div>
                     </td>
                   </tr>
                 ))}
@@ -501,18 +516,18 @@ const PlatformPage = () => {
         </div>
         <div className="md:col-span-2">
           {selectedPost && (
-            <div className="p-4 border rounded-lg">
-              <h3 className="font-bold text-xl mb-2">{selectedPost.title}</h3>
-              <p className="text-gray-600 mb-4">
+            <div className="p-4 border-2 border-gray-300 rounded-lg dark:border-slate-700">
+              <h3 className="font-bold text-xl mb-2 dark:text-white">{selectedPost.title}</h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
                 {selectedPost.company} - {selectedPost.location}
               </p>
-              <p className="mb-4">{selectedPost.description}</p>
-              <div className="text-sm text-gray-500">
+              <p className="mb-4 dark:text-gray-400">{selectedPost.description}</p>
+              <div className="text-sm text-gray-500 dark:text-gray-400">
                 <p>{t('platform.areaLabel')}: {t(`platform.${selectedPost.area.toLowerCase()}Option`)}</p>
                 <p>{t('platform.experienceLabel')}: {selectedPost.experience} {t('platform.yearsLabel')}</p>
                 <p>{t('platform.requiresApartment')}: {selectedPost.requiresApartment ? t('platform.yesOption') : t('platform.noOption')}</p>
               </div>
-              <p className="text-sm text-gray-500 mt-4">{t('platform.postedOnLabel')}: {new Date(selectedPost.postedAt).toLocaleDateString()}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">{t('platform.postedOnLabel')}: {new Date(selectedPost.postedAt).toLocaleDateString()}</p>
             </div>
           )}
         </div>
