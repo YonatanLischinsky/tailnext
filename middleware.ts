@@ -17,11 +17,16 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL('/dashboard', req.url));
   }
 
+  // if user is not signed in and the current path is /platform redirect them to the login page
+  if (!user && req.nextUrl.pathname === '/platform') {
+    return NextResponse.redirect(new URL('/login', req.url))
+  }
+
   // IMPORTANT: do NOT block /dashboard here, because middleware can’t see localStorage sessions
   return res
 }
 
 // Optionally restrict middleware to these routes (avoids running everywhere)
 export const config = {
-  matcher: ['/login', '/signup', '/dashboard', '/auth/signout'],
+  matcher: ['/login', '/signup', '/dashboard', '/auth/signout', '/platform'],
 }

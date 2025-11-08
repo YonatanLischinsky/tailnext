@@ -121,5 +121,22 @@
         }
       ]
     }
+  },
+  "platform": {
+    "location": "Location",
+    "workExperience": "Work Experience (Years)",
+    "requiresApartment": "Requires Apartment",
+    "allOption": "All",
+    "southOption": "South",
+    "centerOption": "Center",
+    "northOption": "North",
+    "defaultOption": "Default",
+    "yesOption": "Yes",
+    "noOption": "No",
+    "availablePosts": "Available Posts",
+    "areaLabel": "Area",
+    "experienceLabel": "Experience",
+    "postedOnLabel": "Posted on",
+    "yearsLabel": "years"
   }
 }

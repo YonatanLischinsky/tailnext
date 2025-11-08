@@ -121,5 +121,22 @@
         }
       ]
     }
+  },
+  "platform": {
+    "location": "אזור",
+    "workExperience": "ניסיון בעבודה (שנים)",
+    "requiresApartment": "דורש דירה",
+    "allOption": "הכל",
+    "southOption": "דרום",
+    "centerOption": "מרכז",
+    "northOption": "צפון",
+    "defaultOption": "ברירת מחדל",
+    "yesOption": "כן",
+    "noOption": "לא",
+    "availablePosts": "פועלים זמינים",
+    "areaLabel": "אזור",
+    "experienceLabel": "ניסיון",
+    "postedOnLabel": "פורסם בתאריך",
+    "yearsLabel": "שנים"
   }
 }
