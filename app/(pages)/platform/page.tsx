@@ -513,7 +513,11 @@ const PlatformPage = () => {
         <div className="md:col-span-1">
           <div className="space-y-4 h-96 overflow-y-auto rounded-lg border-2 border-gray-300 dark:border-slate-700">
             <table className="min-w-full divide-y divide-gray-200 dark:divide-slate-700">
-              <thead className="bg-gray-200 dark:bg-slate-700">
+              <thead
+                className={
+                  filteredPosts.length > 0 ? 'bg-green-200 dark:bg-green-800' : 'bg-gray-200 dark:bg-slate-700'
+                }
+              >
                 <tr>
                   <th
                     scope="col"
