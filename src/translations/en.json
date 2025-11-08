@@ -138,6 +138,7 @@
     "experienceLabel": "Experience",
     "postedOnLabel": "Posted on",
     "yearsLabel": "years",
-    "resetFilters": "Reset Filters"
+    "resetFilters": "Reset",
+    "loading": "Loading..."
   }
 }

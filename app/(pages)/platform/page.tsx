@@ -3,6 +3,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { getTranslation } from '~/utils/i18n';
 import { LanguageContext } from '~/context/LanguageContext';
+import { supabase } from '~/utils/supabase';
 
 const dummyPosts_EN = [
   {
@@ -345,19 +346,38 @@ const PlatformPage = () => {
   const { language } = useContext(LanguageContext);
   const t = (key) => getTranslation(language, key);
 
-  const dummyPosts = language === 'he' ? dummyPosts_HE : dummyPosts_EN;
-
-  const [posts, setPosts] = useState<any[]>(dummyPosts);
-  const [filteredPosts, setFilteredPosts] = useState<any[]>(dummyPosts);
-  const [selectedPost, setSelectedPost] = useState<any | null>(dummyPosts[0]);
+  const [posts, setPosts] = useState<any[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<any[]>([]);
+  const [selectedPost, setSelectedPost] = useState<any | null>(null);
   const [location, setLocation] = useState('All');
   const [experience, setExperience] = useState('All');
   const [requiresApartment, setRequiresApartment] = useState('Default');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const newPosts = language === 'he' ? dummyPosts_HE : dummyPosts_EN;
-    setPosts(newPosts);
-  }, [language]);
+    const fetchPosts = async () => {
+      setLoading(true);
+      const { data, error } = await supabase.from('posts_hr').select('*');
+
+      if (error) {
+        console.error('Error fetching posts:', error);
+      } else if (data) {
+        const formattedData = data.map((post) => ({
+          ...post,
+          postedAt: post.posted_at,
+          requiresApartment: post.requires_apartment,
+        }));
+        setPosts(formattedData);
+        setFilteredPosts(formattedData);
+        if (formattedData.length > 0) {
+          setSelectedPost(formattedData[0]);
+        }
+      }
+      setLoading(false);
+    };
+
+    fetchPosts();
+  }, []);
 
   useEffect(() => {
     let newFilteredPosts = [...posts];
@@ -392,7 +412,7 @@ const PlatformPage = () => {
 
     if (newFilteredPosts.length > 0) {
       const postToSelect = newFilteredPosts.find((p) => p.id === selectedPost?.id) || newFilteredPosts[0];
-      if (postToSelect.id !== selectedPost?.id || postToSelect.title !== selectedPost.title) {
+      if (postToSelect && (postToSelect.id !== selectedPost?.id || postToSelect.title !== selectedPost?.title)) {
         setSelectedPost(postToSelect);
       }
     } else {
@@ -407,6 +427,14 @@ const PlatformPage = () => {
   };
 
   const dir = language === 'he' ? 'rtl' : 'ltr';
+
+  if (loading) {
+    return (
+      <div className="container mx-auto px-4 py-8 text-center" dir={dir}>
+        {t('platform.loading')}
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto px-4 py-8" dir={dir}>
@@ -527,7 +555,7 @@ const PlatformPage = () => {
                 <p>{t('platform.experienceLabel')}: {selectedPost.experience} {t('platform.yearsLabel')}</p>
                 <p>{t('platform.requiresApartment')}: {selectedPost.requiresApartment ? t('platform.yesOption') : t('platform.noOption')}</p>
               </div>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">{t('platform.postedOnLabel')}: {new Date(selectedPost.postedAt).toLocaleDateString()}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">{t('platform.postedOnLabel')}: {new Date(selectedPost.postedAt).toLocaleDateString('en-GB')}</p>
             </div>
           )}
         </div>

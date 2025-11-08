@@ -133,11 +133,12 @@
     "defaultOption": "ברירת מחדל",
     "yesOption": "כן",
     "noOption": "לא",
-    "availablePosts": "פועלים זמינים",
+    "availablePosts": "אפשרויות זמינות ",
     "areaLabel": "אזור",
     "experienceLabel": "ניסיון",
     "postedOnLabel": "פורסם בתאריך",
     "yearsLabel": "שנים",
-    "resetFilters": "איפוס"
+    "resetFilters": "איפוס",
+    "loading": "טוען נתונים..."
   }
 }

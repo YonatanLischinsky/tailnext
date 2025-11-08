@@ -82,7 +82,7 @@ export default async function DashboardPage() {
               </p>
               <p>
                 <span className="font-medium">{getTranslation(language, 'dashboard.memberSinceLabel')}:</span>{' '}
-                {new Date(profile.created_at).toLocaleDateString()}
+                {new Date(profile.created_at).toLocaleDateString('en-GB')}
               </p>
             </div>
           </div>
