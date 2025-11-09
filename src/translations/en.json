@@ -138,7 +138,11 @@
     "experienceLabel": "Experience",
     "postedOnLabel": "Posted on",
     "yearsLabel": "years",
-    "resetFilters": "Reset",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "workersAvailable": "Workers Available",
+    "contractorsRequests": "Contractors Requests",
+    "apartments": "Apartments",
+    "postsAvailable": "posts available",
+    "resetFilters": "Reset"
   }
 }

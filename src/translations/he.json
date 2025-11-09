@@ -139,6 +139,10 @@
     "postedOnLabel": "פורסם בתאריך",
     "yearsLabel": "שנים",
     "resetFilters": "איפוס",
-    "loading": "טוען נתונים..."
+    "loading": "טוען נתונים",
+    "workersAvailable": "עובדים זמינים",
+    "contractorsRequests": "בקשות לעובדים",
+    "apartments": "דירות",
+    "postsAvailable": "משרות זמינות"
   }
 }

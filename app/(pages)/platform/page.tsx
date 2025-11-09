@@ -16,6 +16,7 @@ const PlatformPage = () => {
   const [experience, setExperience] = useState('All');
   const [requiresApartment, setRequiresApartment] = useState('Default');
   const [loading, setLoading] = useState(true);
+  const [selectedButton, setSelectedButton] = useState('workers');
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -114,70 +115,94 @@ const PlatformPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-8" dir={dir}>
-      <div className="mb-8 p-4 rounded-lg bg-gray-200 dark:bg-slate-800 border-2 border-gray-300 dark:border-slate-700">
-        <div className="max-w-4xl">
-          <div className="grid grid-cols-[1fr,1fr,1.5fr,auto] gap-4 items-end">
-            <div>
-              <label htmlFor="location" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                {t('platform.location')}
+      <div className="mb-4 flex justify-center gap-4">
+        <button
+          onClick={() => setSelectedButton('workers')}
+          className={`px-4 py-2 rounded-md ${
+            selectedButton === 'workers' ? 'bg-blue-600 text-white' : 'bg-gray-300 dark:bg-slate-700'
+          }`}
+        >
+          {t('platform.workersAvailable')}
+        </button>
+        <button
+          onClick={() => setSelectedButton('contractors')}
+          className={`px-4 py-2 rounded-md ${
+            selectedButton === 'contractors' ? 'bg-blue-600 text-white' : 'bg-gray-300 dark:bg-slate-700'
+          }`}
+        >
+          {t('platform.contractorsRequests')}
+        </button>
+        <button
+          onClick={() => setSelectedButton('apartments')}
+          className={`px-4 py-2 rounded-md ${
+            selectedButton === 'apartments' ? 'bg-blue-600 text-white' : 'bg-gray-300 dark:bg-slate-700'
+          }`}
+        >
+          {t('platform.apartments')}
+        </button>
+      </div>
+      <div className="mb-8 p-4 rounded-lg bg-gray-200 dark:bg-slate-800">
+        <div className="mx-auto">
+          <div className="flex items-end">
+            <div className="flex-1 grid grid-cols-3">
+              <div className="px-4 border-e border-gray-300 dark:border-slate-700">
+                <label htmlFor="location" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  {t('platform.location')}
+                </label>
+                <select
+                  id="location"
+                  name="location"
+                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:bg-slate-700 dark:border-slate-600 dark:text-white"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                >
+                  <option value="All">{t('platform.allOption')}</option>
+                  <option value="South">{t('platform.southOption')}</option>
+                  <option value="Center">{t('platform.centerOption')}</option>
+                  <option value="North">{t('platform.northOption')}</option>
+                </select>
+              </div>
+              <div className="px-4 border-e border-gray-300 dark:border-slate-700">
+                <label htmlFor="experience" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  {t('platform.workExperience')}
+                </label>
+                <select
+                  id="experience"
+                  name="experience"
+                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:bg-slate-700 dark:border-slate-600 dark:text-white"
+                  value={experience}
+                  onChange={(e) => setExperience(e.target.value)}
+                >
+                  <option value="All">{t('platform.allOption')}</option>
+                  <option value="0-2">0-2</option>
+                  <option value="2-5">2-5</option>
+                  <option value="5+">5+</option>
+                </select>
+              </div>
+              <div className="px-4">
+                <label htmlFor="requiresApartment" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  {t('platform.requiresApartment')}
+                </label>
+                <select
+                  id="requiresApartment"
+                  name="requiresApartment"
+                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:bg-slate-700 dark:border-slate-600 dark:text-white"
+                  value={requiresApartment}
+                  onChange={(e) => setRequiresApartment(e.target.value)}
+                >
+                  <option value="Default">{t('platform.defaultOption')}</option>
+                  <option value="Yes">{t('platform.yesOption')}</option>
+                  <option value="No">{t('platform.noOption')}</option>
+                </select>
+              </div>
+            </div>
+            <div className="px-4">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 opacity-0">
+                {t('platform.resetFilters')}
               </label>
-            </div>
-            <div>
-              <label htmlFor="experience" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                {t('platform.workExperience')}
-              </label>
-            </div>
-            <div>
-              <label htmlFor="requiresApartment" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                {t('platform.requiresApartment')}
-              </label>
-            </div>
-            <div></div> {/* Empty label for the button */}
-            <div>
-              <select
-                id="location"
-                name="location"
-                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:bg-slate-700 dark:border-slate-600 dark:text-white"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-              >
-                <option value="All">{t('platform.allOption')}</option>
-                <option value="South">{t('platform.southOption')}</option>
-                <option value="Center">{t('platform.centerOption')}</option>
-                <option value="North">{t('platform.northOption')}</option>
-              </select>
-            </div>
-            <div>
-              <select
-                id="experience"
-                name="experience"
-                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:bg-slate-700 dark:border-slate-600 dark:text-white"
-                value={experience}
-                onChange={(e) => setExperience(e.target.value)}
-              >
-                <option value="All">{t('platform.allOption')}</option>
-                <option value="0-2">0-2</option>
-                <option value="2-5">2-5</option>
-                <option value="5+">5+</option>
-              </select>
-            </div>
-            <div>
-              <select
-                id="requiresApartment"
-                name="requiresApartment"
-                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:bg-slate-700 dark:border-slate-600 dark:text-white"
-                value={requiresApartment}
-                onChange={(e) => setRequiresApartment(e.target.value)}
-              >
-                <option value="Default">{t('platform.defaultOption')}</option>
-                <option value="Yes">{t('platform.yesOption')}</option>
-                <option value="No">{t('platform.noOption')}</option>
-              </select>
-            </div>
-            <div>
               <button
                 onClick={handleResetFilters}
-                className="rounded-md px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="mt-1 w-full rounded-md px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 {t('platform.resetFilters')}
               </button>
@@ -199,7 +224,7 @@ const PlatformPage = () => {
                     scope="col"
                     className={`px-6 py-3 text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
                   >
-                    {t('platform.availablePosts')}
+                    {`${filteredPosts.length} ${t('platform.postsAvailable')}`}
                   </th>
                 </tr>
               </thead>
