@@ -217,7 +217,7 @@ const PlatformPage = () => {
           <div className="flex items-end">
             {selectedButton === 'apartments' ? (
               <div className="flex-1 grid grid-cols-3">
-                <div className="px-4 border-e border-gray-300 dark:border-slate-700">
+                <div className="px-10 border-e border-slate-700 dark:border-slate-700">
                   <label htmlFor="location" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     {t('platform.location')}
                   </label>
@@ -234,7 +234,7 @@ const PlatformPage = () => {
                     <option value="North">{t('platform.northOption')}</option>
                   </select>
                 </div>
-                <div className="px-4 border-e border-gray-300 dark:border-slate-700">
+                <div className="px-10 border-e border-slate-700 dark:border-slate-700">
                   <label htmlFor="priceRange" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     {t('platform.priceRange')}
                   </label>
@@ -252,7 +252,7 @@ const PlatformPage = () => {
                     <option value="8000+">8000+</option>
                   </select>
                 </div>
-                <div className="px-4">
+                <div className="px-10 border-e border-slate-700 dark:border-slate-700">
                   <label htmlFor="numberOfRooms" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     {t('platform.numberOfRooms')}
                   </label>
@@ -274,7 +274,7 @@ const PlatformPage = () => {
               </div>
             ) : (
               <div className="flex-1 grid grid-cols-3">
-                <div className="px-4 border-e border-gray-300 dark:border-slate-700">
+                <div className="px-10 border-e border-slate-700 dark:border-slate-700">
                   <label htmlFor="location" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     {t('platform.location')}
                   </label>
@@ -291,7 +291,7 @@ const PlatformPage = () => {
                     <option value="North">{t('platform.northOption')}</option>
                   </select>
                 </div>
-                <div className="px-4 border-e border-gray-300 dark:border-slate-700">
+                <div className="px-10 border-e border-slate-700 dark:border-slate-700">
                   <label htmlFor="experience" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     {t('platform.workExperience')}
                   </label>
@@ -308,7 +308,7 @@ const PlatformPage = () => {
                     <option value="5+">5+</option>
                   </select>
                 </div>
-                <div className="px-4">
+                <div className="px-10 border-e border-slate-700 dark:border-slate-700">
                   <label htmlFor="requiresApartment" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     {selectedButton === 'contractors' ? t('platform.accommodationProvided') : t('platform.requiresApartment')}
                   </label>
@@ -326,7 +326,7 @@ const PlatformPage = () => {
                 </div>
               </div>
             )}
-            <div className="px-4">
+            <div className="px-10">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 opacity-0">
                 {t('platform.resetFilters')}
               </label>
