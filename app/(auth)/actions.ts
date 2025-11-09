@@ -6,7 +6,7 @@ import { createServerActionClient } from '@supabase/auth-helpers-nextjs'
 
 type ActionState = { errorKey?: string }
 
-export async function loginAction(_prevState: ActionState, formData: FormData): Promise<ActionState | void> {
+export async function loginAction(_prevState: void | ActionState, formData: FormData): Promise<ActionState | void> {
   const email = String(formData.get('email') || '')
   const password = String(formData.get('password') || '')
 

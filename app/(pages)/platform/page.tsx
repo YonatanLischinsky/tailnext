@@ -7,7 +7,7 @@ import { supabase } from '~/utils/supabase';
 
 const PlatformPage = () => {
   const { language } = useContext(LanguageContext);
-  const t = (key) => getTranslation(language, key);
+  const t = (key: string) => getTranslation(language, key);
 
   const [posts, setPosts] = useState<any[]>([]);
   const [filteredPosts, setFilteredPosts] = useState<any[]>([]);
@@ -151,7 +151,7 @@ const PlatformPage = () => {
     } else {
       setSelectedPost(null);
     }
-  }, [location, experience, requiresApartment, posts, selectedButton, priceRange, numberOfRooms]);
+  }, [location, experience, requiresApartment, posts, selectedButton, priceRange, numberOfRooms, selectedPost]);
 
   const handleResetFilters = () => {
     setLocation('All');

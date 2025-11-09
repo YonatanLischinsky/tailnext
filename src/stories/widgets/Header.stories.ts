@@ -24,12 +24,16 @@ type Story = StoryObj<typeof meta>;
 export const Base: Story = {
   args: {
     ...mockData,
+    user: null,
+    profile: null,
   },
 };
 
 export const Mobile: Story = {
   args: {
     ...mockData,
+    user: null,
+    profile: null,
   },
   parameters: {
     viewport: {

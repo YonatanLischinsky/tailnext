@@ -47,8 +47,10 @@ export default function Page() {
     title: t('home.hero.title'),
     subtitle: t('home.hero.subtitle'),
     callToAction: {
-      ...heroHome.callToAction,
+      href: heroHome.callToAction?.href || '/',
       text: t('hero.registerNow'),
+      icon: heroHome.callToAction?.icon,
+      targetBlank: heroHome.callToAction?.targetBlank,
     },
   };
 

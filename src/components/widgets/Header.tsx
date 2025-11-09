@@ -24,7 +24,7 @@ const Header = ({ user, profile }: HeaderProps) => {
   const { links, actions, isSticky, showToggleTheme, showRssFeed, position } = headerData;
   const { language } = useContext(LanguageContext);
 
-  const translatedActions = actions.map(action => {
+  const translatedActions = (actions || []).map(action => {
     if (action.href === '/login') {
       return { ...action, text: getTranslation(language, 'header.loginButton') };
     } else if (action.href === '/signup') {
@@ -37,12 +37,12 @@ const Header = ({ user, profile }: HeaderProps) => {
     translatedActions.reverse();
   }
 
-  const translatedLinks = links.map(link => {
-    const translatedLink = { ...link, label: getTranslation(language, link.label) };
+  const translatedLinks = (links || []).map(link => {
+    const translatedLink = { ...link, label: getTranslation(language, link.label || '') };
     if (link.links) {
         translatedLink.links = link.links.map(subLink => ({
             ...subLink,
-            label: getTranslation(language, subLink.label),
+            label: getTranslation(language, subLink.label || ''),
         }));
     }
     return translatedLink;
